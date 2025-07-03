@@ -21,6 +21,7 @@ This repository (`gh-deployment-workflow`) contains:
 - A **`.github/workflows/deploy.yml`** defining the deploy workflow  
 - Workflow triggers **only** on pushes to `main` that include changes to `index.html`  
 - The published site will be available at `https://<username>.github.io/gh-deployment-workflow/`
+- Go on the **repo Settings**, **Pages** and select the source as `Github Actions`
 
 ---
 
