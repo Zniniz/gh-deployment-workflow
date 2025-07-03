@@ -1,0 +1,43 @@
+# .github/workflows/deploy.yml
+name: Deploy to GitHub Pages
+
+# Trigger only on pushes that modify index.html in the main branch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+
+permissions:
+  pages: write       # allow deployment to Pages
+  id-token: write    # required by the deploy action
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      BASE_URL: https://zniniz.github.io/gh-deployment-workflow/index.html  # replace with your GitHub Pages URL;
+    
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload Pages artifact
+        # Upload the index.html file as an artifact for deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: index.html
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # The directory containing the index.html file
+
+      - name: Show deployed URL
+        run: echo "Deployed to ${{ env.BASE_URL }}"
+
