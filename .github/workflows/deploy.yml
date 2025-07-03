@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:  # Defining environment variables
+    env:  # Defining environment variable
       BASE_URL: https://zniniz.github.io/gh-deployment-workflow
 
     steps:
