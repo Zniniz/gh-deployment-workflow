@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     paths:
-      - './gh-deployment-workflow/index.html'  # Only run when index.html is changed
+      - 'index.html'  # Only run when index.html is changed
 
 jobs:
   deploy:
