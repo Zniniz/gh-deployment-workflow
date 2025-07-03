@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BASE_URL: https://zniniz.github.io/gh-deployment-workflow/index.html  # replace with your GitHub Pages URL;
+      BASE_URL: https://zniniz.github.io/gh-deployment-workflow/index.html/  # replace with your GitHub Pages URL;
     
 
     steps:
@@ -29,15 +29,11 @@ jobs:
         # Upload the index.html file as an artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: index.html
+          path: './'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # The directory containing the index.html file
 
       - name: Show deployed URL
         run: echo "Deployed to ${{ env.BASE_URL }}"
-
