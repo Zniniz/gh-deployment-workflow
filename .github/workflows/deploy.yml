@@ -1,38 +1,26 @@
-name: Deploy static content to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['main']
-    paths: ['index.html']
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write      # This matches the “Read and write” setting in repo Actions permissions
-  id-token: write
+    paths:
+      - './gh-deployment-workflow/index.html'  # Only run when index.html is changed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:  # Defining environment variables
+      BASE_URL: https://niceprog.github.io/Roadmap-DevOps/gh-deployment-workflow
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: './'  # Points to the folder containing index.html
 
-      - name: Show deployed URL
-        run: echo "Your site is live at ${{ steps.deployment.outputs.page_url }}"
-
+      - name: Output deployment URL
+        run: echo "The website is deployed at ${{ env.BASE_URL }}"  # Using environment variables
