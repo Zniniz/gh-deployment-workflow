@@ -25,7 +25,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: './'  # Points to the folder containing index.html
+          publish_dir: './'  # Point to the folder containing index.html
       
       - name: Show deployed URL
         run: echo "Deployed to ${{ env.BASE_URL }}"
