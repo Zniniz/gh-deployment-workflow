@@ -1,19 +1,13 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ['main']
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    paths:
+      - '**/*.html'  # Trigger deployment on any HTML change in any folder
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
-    env:  # Defining environment variables
-      BASE_URL: https://Zniniz.github.io/gh-deployment-workflow
 
     steps:
       - name: Checkout repository
@@ -23,7 +17,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: './'  # Points to the folder containing index.html
+          publish_dir: './'  # Deploys from the root of the repository
 
       - name: Output deployment URL
-        run: echo "The website is deployed at ${{ env.BASE_URL }}"  # Using environment variables
+        run: echo "The website is deployed at https://zniniz.github.io/gh-deployment-workflow/"
+
