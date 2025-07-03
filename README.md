@@ -27,6 +27,4 @@ This repository (`gh-deployment-workflow`) contains:
 ## Getting Started
 
 1. **Clone** this repo (or create a new one named `gh-deployment-workflow`).
-2. Ensure you have an **`index.html`** at the root
-3. After the workflow runs, visit the site at the following link:
-   `https://<username>.github.io/gh-deployment-workflow/`
+2. Ensure you have an **`index.html`** at the root.
