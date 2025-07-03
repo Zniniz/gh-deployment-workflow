@@ -1,4 +1,4 @@
-# [GitHub Pages Deployment](https://roadmap.sh/projects/ec2-instance)
+# [GitHub Pages Deployment](https://roadmap.sh/projects/github-actions-deployment-workflow)
 
 Write a simple GitHub Actions workflow to deploy a static website to GitHub Pages.
 
