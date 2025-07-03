@@ -1,31 +1,26 @@
-# .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
 
-# Trigger only on pushes that modify index.html in the main branch
 on:
   push:
-    branches:
-      - main
     paths:
-      - './gh-deployment-workflow/index.html'
+      - './gh-deployment-workflow/index.html'  # Only run when index.html is changed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:
-      BASE_URL: https://zniniz.github.io/gh-deployment-workflow  # replace with your GitHub Pages URL;
-    
+    env:  # Defining environment variables
+      BASE_URL: https://zniniz.github.io/gh-deployment-workflow
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: './'  # Point to the folder containing index.html
-      
-      - name: Show deployed URL
-        run: echo "Deployed to ${{ env.BASE_URL }}"
+          publish_dir: './'  # Points to the folder containing index.html
+
+      - name: Output deployment URL
+        run: echo "The website is deployed at ${{ env.BASE_URL }}"  # Using environment variables
