@@ -7,33 +7,25 @@ on:
     branches:
       - main
     paths:
-      - 'index.html'
-
-permissions:
-  pages: write       # allow deployment to Pages
-  id-token: write    # required by the deploy action
+      - './gh-deployment-workflow/index.html'
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     env:
-      BASE_URL: https://zniniz.github.io/gh-deployment-workflow/index.html/  # replace with your GitHub Pages URL;
+      BASE_URL: https://zniniz.github.io/gh-deployment-workflow  # replace with your GitHub Pages URL;
     
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Upload Pages artifact
-        # Upload the index.html file as an artifact for deployment
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './'
-
+        uses: actions/checkout@v3
+      
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: './'  # Points to the folder containing index.html
+      
       - name: Show deployed URL
         run: echo "Deployed to ${{ env.BASE_URL }}"
