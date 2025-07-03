@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:  # Defining environment variables
-      BASE_URL: https://niceprog.github.io/Roadmap-DevOps/gh-deployment-workflow
+      BASE_URL: https://Zniniz.github.io/gh-deployment-workflow
 
     steps:
       - name: Checkout repository
