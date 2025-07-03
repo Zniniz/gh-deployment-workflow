@@ -1,4 +1,3 @@
-# .github/workflows/deploy.yml
 name: Deploy static content to Pages
 
 on:
@@ -9,7 +8,7 @@ on:
 
 permissions:
   contents: read
-  pages: write
+  pages: write      # This matches the “Read and write” setting in repo Actions permissions
   id-token: write
 
 jobs:
@@ -23,7 +22,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
-          enablement: true    # ensure Pages site exists
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -35,5 +34,5 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Show deployed URL
-        run: echo "Deployed to ${{ steps.deployment.outputs.page_url }}"
+        run: echo "Your site is live at ${{ steps.deployment.outputs.page_url }}"
 
